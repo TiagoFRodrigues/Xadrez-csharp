@@ -8,25 +8,25 @@ namespace xadrez_console.xadrez
 {
     class PartidaDeXadrez
     {
-        public Tabuleiro tabuleiro { get; private set; }
-        private int turno;
-        private Cor jogadorAtual;
+        public Tabuleiro Tabuleiro { get; private set; }
+        private int Turno;
+        private Cor JogadorAtual;
         public bool Terminada { get; private set; }
 
         public PartidaDeXadrez()
         {
-            this.tabuleiro = new Tabuleiro(8, 8);
-            this.turno = 1;
-            this.jogadorAtual = Cor.Branca;
+            this.Tabuleiro = new Tabuleiro(8, 8);
+            this.Turno = 1;
+            this.JogadorAtual = Cor.Branca;
             this.Terminada = false;
             ColocarPecas();
         }
         public void ExecutaMovimento(Posicao origem, Posicao destino)
         {
-            Peca p = this.tabuleiro.RetirarPeca(origem);
+            Peca p = this.Tabuleiro.RetirarPeca(origem);
             p.IncrementarQtMovimentos();
-            Peca pecaCapturada =  this.tabuleiro.RetirarPeca(destino);
-            this.tabuleiro.ColocarPeca(p, destino);
+            Peca pecaCapturada =  this.Tabuleiro.RetirarPeca(destino);
+            this.Tabuleiro.ColocarPeca(p, destino);
 
 
 
@@ -34,19 +34,19 @@ namespace xadrez_console.xadrez
 
         private void ColocarPecas()
         {
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Branca), new PosicaoXadrez('c', 1).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Branca), new PosicaoXadrez('c', 2).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Branca), new PosicaoXadrez('d', 2).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Branca), new PosicaoXadrez('e', 2).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Branca), new PosicaoXadrez('e', 1).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Rei(this.tabuleiro, Cor.Branca), new PosicaoXadrez('d', 1).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Branca), new PosicaoXadrez('c', 1).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Branca), new PosicaoXadrez('c', 2).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Branca), new PosicaoXadrez('d', 2).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Branca), new PosicaoXadrez('e', 2).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Branca), new PosicaoXadrez('e', 1).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Rei(this.Tabuleiro, Cor.Branca), new PosicaoXadrez('d', 1).ToPosicao());
 
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Preta), new PosicaoXadrez('c', 7).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Preta), new PosicaoXadrez('c', 8).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Preta), new PosicaoXadrez('d', 7).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Preta), new PosicaoXadrez('e', 7).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Torre(this.tabuleiro, Cor.Preta), new PosicaoXadrez('e', 8).ToPosicao());
-            this.tabuleiro.ColocarPeca(new Rei(this.tabuleiro, Cor.Preta), new PosicaoXadrez('d', 8).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Preta), new PosicaoXadrez('c', 7).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Preta), new PosicaoXadrez('c', 8).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Preta), new PosicaoXadrez('d', 7).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Preta), new PosicaoXadrez('e', 7).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Torre(this.Tabuleiro, Cor.Preta), new PosicaoXadrez('e', 8).ToPosicao());
+            this.Tabuleiro.ColocarPeca(new Rei(this.Tabuleiro, Cor.Preta), new PosicaoXadrez('d', 8).ToPosicao());
         }
 
     }
