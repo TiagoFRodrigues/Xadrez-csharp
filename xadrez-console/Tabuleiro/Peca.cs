@@ -18,7 +18,27 @@ namespace xadrez_console.tabuleiro
         }
 
         public abstract bool[,] MovimentosPossiveis();
-        
+
+        public bool ExisteMovimentosPossiveis()
+        {
+            bool[,] mat = MovimentosPossiveis();
+            for (int l = 0; l < Tab.Linhas; l++)
+            {
+                for(int c = 0; c < Tab.Colunas; c++)
+                {
+                    if (mat[l, c])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool PodeMoverPara(Posicao posicao)
+        {
+            return MovimentosPossiveis()[posicao.Linha, posicao.Coluna];
+        }
 
         public void IncrementarQtMovimentos()
         {
