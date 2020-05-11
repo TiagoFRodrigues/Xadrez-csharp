@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using System.Security.Cryptography;
 using xadrez_console.tabuleiro;
 using xadrez_console.xadrez;
 
@@ -20,45 +18,18 @@ namespace xadrez_console
                     {
                         Console.Clear();
                         Tela.ImprimirPartida(partida);
-
-
-
-                        
-                        Console.Write("Origem: ");
-                        Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
-                        partida.ValidarPosicaoOrigem(origem);
-
-                        bool[,] posicoesPossiveis = partida.Tabuleiro.Peca(origem).MovimentosPossiveis();
-
-                        Console.Clear();
-                        Tela.ImprimirTabuleiro(partida.Tabuleiro, posicoesPossiveis);
-
-                        Console.WriteLine("Turno: " + partida.Turno);
-                        Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
-                        Console.WriteLine();
-                        Console.Write("Destino: ");
-                        Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
-                        partida.ValidarPosicaoDestino(origem, destino);
-
-                        partida.RealizaJogada(origem, destino);
                     }
                     catch (TabuleiroException err)
                     {
                         Console.WriteLine(err.Message);
                         Console.ReadLine();
                     }
-                    
                 }
-
             }
             catch (TabuleiroException e)
             {
                 Console.WriteLine(e.Message);
             }
-
-
-
-
         }
     }
 }
