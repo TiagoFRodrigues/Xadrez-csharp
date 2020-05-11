@@ -15,31 +15,38 @@ namespace xadrez_console
             Console.WriteLine();
 
             Console.WriteLine("Turno: " + partida.Turno);
-            Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
-
-            if (partida.Xeque)
+            if (!partida.Terminada)
             {
-                Console.WriteLine("XEQUE!");
+                Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
+                if (partida.Xeque)
+                {
+                    Console.WriteLine("XEQUE!");
+                }
+
+                Console.WriteLine();
+                Console.Write("Origem: ");
+                Posicao origem = LerPosicaoXadrez().ToPosicao();
+                partida.ValidarPosicaoOrigem(origem);
+
+                bool[,] posicoesPossiveis = partida.Tabuleiro.Peca(origem).MovimentosPossiveis();
+
+                Console.Clear();
+                ImprimirTabuleiro(partida.Tabuleiro, posicoesPossiveis);
+
+                Console.WriteLine("Turno: " + partida.Turno);
+                Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
+                Console.WriteLine();
+                Console.Write("Destino: ");
+                Posicao destino = LerPosicaoXadrez().ToPosicao();
+                partida.ValidarPosicaoDestino(origem, destino);
+
+                partida.RealizaJogada(origem, destino);
             }
-
-            Console.WriteLine();
-            Console.Write("Origem: ");
-            Posicao origem = LerPosicaoXadrez().ToPosicao();
-            partida.ValidarPosicaoOrigem(origem);
-
-            bool[,] posicoesPossiveis = partida.Tabuleiro.Peca(origem).MovimentosPossiveis();
-
-            Console.Clear();
-            ImprimirTabuleiro(partida.Tabuleiro, posicoesPossiveis);
-
-            Console.WriteLine("Turno: " + partida.Turno);
-            Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
-            Console.WriteLine();
-            Console.Write("Destino: ");
-            Posicao destino = LerPosicaoXadrez().ToPosicao();
-            partida.ValidarPosicaoDestino(origem, destino);
-
-            partida.RealizaJogada(origem, destino);
+            else
+            {
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine("Vencedor: " + partida.JogadorAtual);
+            }
         }
 
         private static void ImprimirPecasCapturadas(PartidaDeXadrez partida)

@@ -72,8 +72,15 @@ namespace xadrez_console.xadrez
                 this.Xeque = false;
             }
 
-            this.Turno++;
-            MudaJogador();
+            if (TesteXequemate(Adversaria(JogadorAtual)))
+            {
+                this.Terminada = true;
+            }
+            else
+            {
+                this.Turno++;
+                MudaJogador();
+            }
         }
 
         public void ValidarPosicaoOrigem(Posicao posicao)
@@ -185,6 +192,39 @@ namespace xadrez_console.xadrez
             return false;
         }
 
+        public bool TesteXequemate(Cor cor)
+        {
+            if(!EstaEmXeque(cor))
+            {
+                return false;
+            }
+
+            foreach(Peca x in PecasEmJogo(cor))
+            {
+                bool[,] mat = x.MovimentosPossiveis();
+                for(int l = 0; l < this.Tabuleiro.Linhas; l++)
+                {
+                    for (int c = 0; c < this.Tabuleiro.Colunas; c++)
+                    {
+                        if (mat[l, c])
+                        {
+                            Posicao origem = x.Posicao;
+                            Posicao destino = new Posicao(l, c);
+                            Peca pecaCapturada = ExecutaMovimento(origem, new Posicao(l, c));
+                            bool testeXeque = EstaEmXeque(cor);
+                            DesfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public void ColocarNovaPeca(char coluna, int linha, Peca peca)
         {
             this.Tabuleiro.ColocarPeca(peca, new PosicaoXadrez(coluna, linha).ToPosicao());
@@ -194,6 +234,15 @@ namespace xadrez_console.xadrez
 
         private void ColocarPecas()
         {
+
+            ColocarNovaPeca('c', 1, new Torre(this.Tabuleiro, Cor.Branca));
+            ColocarNovaPeca('d', 1, new Rei(this.Tabuleiro, Cor.Branca));
+            ColocarNovaPeca('h', 7, new Torre(this.Tabuleiro, Cor.Branca));
+
+            ColocarNovaPeca('a', 8, new Rei(this.Tabuleiro, Cor.Preta));
+            ColocarNovaPeca('b', 8, new Torre(this.Tabuleiro, Cor.Preta));
+
+            /*
             ColocarNovaPeca('c', 1, new Torre(this.Tabuleiro, Cor.Branca));
             ColocarNovaPeca('c', 2, new Torre(this.Tabuleiro, Cor.Branca));
             ColocarNovaPeca('d', 2, new Torre(this.Tabuleiro, Cor.Branca));
@@ -207,6 +256,7 @@ namespace xadrez_console.xadrez
             ColocarNovaPeca('e', 7, new Torre(this.Tabuleiro, Cor.Preta));
             ColocarNovaPeca('e', 8, new Torre(this.Tabuleiro, Cor.Preta));
             ColocarNovaPeca('d', 8, new Rei(this.Tabuleiro, Cor.Preta));
+            */
         }
 
     }
