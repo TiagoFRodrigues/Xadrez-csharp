@@ -1,10 +1,13 @@
-﻿using xadrez_console.tabuleiro;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using xadrez_console.tabuleiro;
 
 namespace xadrez_console.xadrez
 {
-    class Torre : Peca
+    class Bispo : Peca
     {
-        public Torre(Tabuleiro tab, Cor cor) : base(tab, cor)
+        public Bispo(Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
         {
         }
 
@@ -19,20 +22,8 @@ namespace xadrez_console.xadrez
             bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
             Posicao pos = new Posicao(0, 0);
 
-            // Norte
-            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna);
-            while (Tab.PosicaoValida(pos) && PodeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if(Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
-                {
-                    break;
-                }
-                pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna);
-            }
-
-            // Leste
-            pos.DefinirValores(Posicao.Linha, Posicao.Coluna+1);
+            // Nordeste
+            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
             while (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
@@ -40,23 +31,11 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha, Posicao.Coluna + 1);
+                pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
             }
 
-            // Sul
-            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna);
-            while (Tab.PosicaoValida(pos) && PodeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor !=Cor)
-                {
-                    break;
-                }
-                pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna);
-            }
-
-            // Oeste
-            pos.DefinirValores(Posicao.Linha, Posicao.Coluna-1);
+            // Sudeste
+            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna+1);
             while (Tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 mat[pos.Linha, pos.Coluna] = true;
@@ -64,7 +43,31 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha, Posicao.Coluna - 1);
+                pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
+            }
+
+            // Suldoeste
+            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna -1);
+            while (Tab.PosicaoValida(pos) && PodeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
+            }
+
+            // Noroeste
+            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
+            while (Tab.PosicaoValida(pos) && PodeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (Tab.Peca(pos) != null && Tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
             }
 
             return mat;
@@ -72,7 +75,8 @@ namespace xadrez_console.xadrez
 
         public override string ToString()
         {
-            return "T";
+            return "B";
         }
+
     }
 }
