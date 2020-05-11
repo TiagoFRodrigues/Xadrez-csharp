@@ -11,10 +11,15 @@ namespace xadrez_console.tabuleiro
 
         public Peca(Tabuleiro tab, Cor cor)
         {
-            Posicao = null;
-            Cor = cor;
-            Tab = tab;
-            QtMovimentos = 0;
+            this.Posicao = null;
+            this.Cor = cor;
+            this.Tab = tab;
+            this.QtMovimentos = 0;
+        }
+
+        public void IncrementarQtMovimentos()
+        {
+            this.QtMovimentos++;
         }
     }
 }
