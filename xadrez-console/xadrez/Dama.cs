@@ -31,7 +31,7 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna);
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna);
             }
 
             // Nordeste
@@ -43,7 +43,7 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna + 1);
             }
 
             // Leste
@@ -55,7 +55,7 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha, Posicao.Coluna + 1);
+                pos.DefinirValores(pos.Linha, pos.Coluna + 1);
             }
 
             // Sudeste
@@ -67,7 +67,7 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna + 1);
             }
 
             // Sul
@@ -79,7 +79,7 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna);
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna);
             }
 
             // Suldoeste
@@ -91,7 +91,7 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna - 1);
             }
 
             // Oeste
@@ -103,7 +103,7 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha, Posicao.Coluna - 1);
+                pos.DefinirValores(pos.Linha, pos.Coluna - 1);
             }
 
             // Noroeste
@@ -115,7 +115,7 @@ namespace xadrez_console.xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
             }
 
             return mat;

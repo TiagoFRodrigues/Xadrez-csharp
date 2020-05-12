@@ -40,7 +40,7 @@ namespace xadrez_console.xadrez
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
-                pos.DefinirValores(Posicao.Linha - 2, Posicao.Coluna - 1);
+                pos.DefinirValores(Posicao.Linha - 2, Posicao.Coluna);
                 if (Tab.PosicaoValida(pos) && Livre(pos) && QtMovimentos == 0)
                 {
                     mat[pos.Linha, pos.Coluna] = true;
@@ -63,7 +63,7 @@ namespace xadrez_console.xadrez
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
-                pos.DefinirValores(Posicao.Linha + 2, Posicao.Coluna - 1);
+                pos.DefinirValores(Posicao.Linha + 2, Posicao.Coluna);
                 if (Tab.PosicaoValida(pos) && Livre(pos) && QtMovimentos == 0)
                 {
                     mat[pos.Linha, pos.Coluna] = true;
